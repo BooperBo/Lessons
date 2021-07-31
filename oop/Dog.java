@@ -19,16 +19,20 @@ public class Dog {
     }
 
     public void bark() {
-        switch (size){
-            case BIG: case VERY_BIG:
+        switch (size) {
+            case BIG:
+            case VERY_BIG:
                 System.out.println("Wof-Wof");
                 break;
             case AVERAGE:
                 System.out.println("Raf-Raf");
                 break;
-            case SMALL: case VERY_SMALL:
+            case SMALL:
+            case VERY_SMALL:
                 System.out.println("Tiaf-Tiaf");
                 break;
+            default:
+                System.out.println("Dog's size is undefined ");
         }
     }
 
