@@ -7,6 +7,7 @@ public class HelloWorld {
         byte b = 10;
         short c = 200;
         int a = b + 23;
+        long myLongValue = 346346L;
 
         System.out.println("b = " + b);
         System.out.println("a = " + a);
