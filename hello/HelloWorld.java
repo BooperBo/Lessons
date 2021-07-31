@@ -10,5 +10,6 @@ public class HelloWorld {
 
         System.out.println("b = " + b);
         System.out.println("a = " + a);
+        System.out.println("c = " + c);
     }
 }
