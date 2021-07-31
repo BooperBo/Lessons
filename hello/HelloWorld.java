@@ -10,6 +10,7 @@ public class HelloWorld {
         long myLongValue = 346346L;
         float myFloatValue = 23.56f;
         double myDoubleValue = 23.54d;
+        double sum = a + b + c + myDoubleValue + myFloatValue + myLongValue;
 
         System.out.println("b = " + b);
         System.out.println("a = " + a);
