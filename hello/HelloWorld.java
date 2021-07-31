@@ -8,6 +8,8 @@ public class HelloWorld {
         short c = 200;
         int a = b + 23;
         long myLongValue = 346346L;
+        float myFloatValue = 23.56f;
+        double myDoubleValue = 23.54d;
 
         System.out.println("b = " + b);
         System.out.println("a = " + a);
