@@ -10,6 +10,12 @@ public class Truck extends FuelAuto {
         this.cargoWeight = cargoWeight;
         System.out.println("Constricting truck");
     }
+
+    @Override
+    public void energize() {
+        fuelUp(getTankVolume() - getAvailablePetrol());
+    }
+
     @Override
     public void start() {
         isRunning = true;

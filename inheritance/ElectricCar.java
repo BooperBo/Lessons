@@ -11,6 +11,12 @@ public class ElectricCar extends Auto {
         this.batteryVolume = batteryVolume;
         this.passengersNumber = passengersNumber;
     }
+
+    @Override
+    public void energize() {
+        charge();
+    }
+
     @Override
     public void start() {
         isRunning = true;
@@ -25,7 +31,7 @@ public class ElectricCar extends Auto {
         System.out.println("Car has stopped");
     }
 
-    public void charge() {
+    private void charge() {
         System.out.println("Battery is charging");
     }
 

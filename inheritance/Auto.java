@@ -1,6 +1,6 @@
 package inheritance;
 
-public class Auto {
+public abstract class Auto {
 
     private String producer;
     private String model;
@@ -10,6 +10,8 @@ public class Auto {
 
     public Auto() {
     }
+
+    public abstract void energize();
 
     public Auto(String producer, String model, Engine engine) {
         this.producer = producer;

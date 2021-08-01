@@ -16,6 +16,11 @@ public class Bus extends FuelAuto {
     }
 
     @Override
+    public void energize() {
+        fuelUp(getTankVolume() - getAvailablePetrol());
+    }
+
+    @Override
     public void start() {
         isRunning = true;
         setCurrentSpeed(10);
@@ -35,6 +40,7 @@ public class Bus extends FuelAuto {
         if (volume > getTankVolume()) {
             setAvailablePetrol(getTankVolume());
         }
+        System.out.println("Adding DIESEL");
     }
 
     public void pickUpPassengers(int passengersNum) {
