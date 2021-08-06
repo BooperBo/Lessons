@@ -1,8 +1,9 @@
-package collections.arrays;
+package collections;
 
 import java.util.Arrays;
 
 public class GradeBook {
+
     public static void main(String[] args) {
         int[][] gradesArray = {{87, 96, 70},
                 {68, 87, 90},

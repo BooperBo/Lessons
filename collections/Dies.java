@@ -1,8 +1,9 @@
-package collections.arrays;
+package collections;
 
 import java.security.SecureRandom;
 
 public class Dies {
+
     public static void main(String[] args) {
 
         SecureRandom random = new SecureRandom();
