@@ -11,20 +11,40 @@ public class CollectionsRunner {
                 deckOfCards.add(new Card(suit, face));
             }
         }
-        /*System.out.println("Original deck of cards");
-        for (int i = 0; i < deckOfCards.size(); i++) {
-            System.out.printf("%-20s %s", deckOfCards.get(i), (i + 1) % 4 == 0 ? "\n" : " ");
-        }*/
 
 
-        System.out.println("\n\nCards after shuffle");
         Collections.shuffle(deckOfCards);
-        for (int i = 0; i < deckOfCards.size(); i++) {
-            System.out.printf("%-20s %s", deckOfCards.get(i), (i + 1) % 4 == 0 ? "\n" : " ");
+        Collections.sort(deckOfCards);
+
+
+        Card card = new Card(Card.Suit.SPADERS, Card.Face.Queen);
+        int i = Collections.binarySearch(deckOfCards, card);
+        if (i >= 0) {
+            System.out.println("Card was found at position " + i);
+        } else {
+            System.out.println("Card was not found");
         }
 
-        Collections.sort(deckOfCards, Collections.reverseOrder());
-        System.out.println("\n\nCards after sorting");
+        List<Card> cardList = new ArrayList<>(deckOfCards);
+        Collections.fill(cardList, card);
+        Collections.addAll(cardList, card, card, card);
+        Collections.copy(cardList, deckOfCards);
+        int frequency = Collections.frequency(cardList, card);
+        System.out.println("frequency of " + card + " is " + frequency);
+
+        System.out.println("MIN "+ Collections.min(cardList));
+        System.out.println("MAX "+ Collections.max(cardList));
+//        printOutPut(cardList);
+
+
+//        System.out.println("\n\nCards after shuffle");
+//        printOutPut((List<Card>) deckOfCards);
+
+//        System.out.println("\n\nCards after sorting");
+//        printOutPut(deckOfCards);
+    }
+
+    private static void printOutPut(List<Card> deckOfCards) {
         for (int i = 0; i < deckOfCards.size(); i++) {
             System.out.printf("%-20s %s", deckOfCards.get(i), (i + 1) % 4 == 0 ? "\n" : " ");
         }
@@ -66,6 +86,24 @@ public class CollectionsRunner {
                 return String.valueOf(suit).compareTo(String.valueOf(card.getSuit()));
             }
             return 0;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            Card card = (Card) o;
+
+            if (suit != card.suit) return false;
+            return face == card.face;
+        }
+
+        @Override
+        public int hashCode() {
+            int result = suit != null ? suit.hashCode() : 0;
+            result = 31 * result + (face != null ? face.hashCode() : 0);
+            return result;
         }
 
         @Override
