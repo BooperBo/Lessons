@@ -5,40 +5,44 @@ import collections.map.treemap.SubjectGrade;
 import collections.map.treemap.TreeMapRunner;
 
 import java.io.*;
-import java.util.NavigableMap;
-import java.util.Set;
+import java.util.*;
 
 public class IOMain {
 
     private static final String FILE_NAME = "GradeBook.txt";
-
+    private static final String BINARY_FILE = "Students.bin";
 
     public static void main(String[] args) throws IOException {
-        NavigableMap<AverageStudentGrade, Set<SubjectGrade>> grades = TreeMapRunner.createGrades();
-        readFile(grades);
+        SortedMap<AverageStudentGrade, Set<SubjectGrade>> grades = TreeMapRunner.createGrades();
+        Reader reader = new Reader();
+        Writer writer = new Writer();
+        writer.writeFile(grades, FILE_NAME);
+//        reader.readFile(FILE_NAME);
 
-        readFile();
+
+//        writerWithFormatter();
+
+        processGrades(grades,writer,BINARY_FILE);
+        outputObject(reader, BINARY_FILE);
+
     }
 
-    private static void readFile() throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME));
-        String c;
-        while ((c = reader.readLine()) != null) {
-            System.out.println(c);
+    private static void processGrades(SortedMap<AverageStudentGrade, Set<SubjectGrade>> grades, Writer writer, String fileName) {
+        List<Student> students = new ArrayList<>();
+        for (AverageStudentGrade gradeKey : grades.keySet()) {
+            students.add(new Student(gradeKey.getName(), gradeKey.getAverageGrade(), grades.get(gradeKey)));
+        }
+        writer.writeObject(students, fileName);
+    }
 
+    private static void outputObject(Reader reader, String fileName) {
+        List<Student> students = reader.readObject(fileName);
+        for (Student student : students) {
+            System.out.printf("%s, %.2f %n", student.getName(), student.getAverageGrade());
+            System.out.println(student.getGrades());
         }
     }
 
-    private static void readFile(NavigableMap<AverageStudentGrade, Set<SubjectGrade>> grades) throws IOException {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME))) {
-            for (AverageStudentGrade gradeKey : grades.keySet()) {
-                writer.write("--------------------------------------\n");
-                writer.write("Student: " + gradeKey.getName() + " Average grade" + gradeKey.getAverageGrade() + "\n");
-                for (SubjectGrade grade : grades.get(gradeKey)) {
-                    writer.write("Subject: " + grade.getSubject() + " Grade: " + grade.getGrade() + "\n");
-                }
-            }
-        }
-    }
+
 }
 
