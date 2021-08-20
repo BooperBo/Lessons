@@ -2,9 +2,7 @@ package javaio;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 
 public class FileUtils {
 
@@ -57,6 +55,21 @@ public class FileUtils {
         System.out.println("Sub-path " + absolutePath.subpath(0, 3));
         Path path3 = Paths.get("../../");
         System.out.println("Real path " + path3.toRealPath());
+
+        System.out.println("File exist " + Files.exists(path));
+        System.out.println("File does not exist " + Files.notExists(path));
+        System.out.println("Is readable " + Files.isReadable(path));
+        System.out.println("Is writable " + Files.isWritable(path));
+        System.out.println("Is executable " + Files.isExecutable(path));
+
+        System.out.println("Is the same file  " + Files.isSameFile(path, path1));
+
+        Path parentPath = absolutePath.getParent();
+        Path filesPath = parentPath.resolve("files");
+        if (Files.notExists(filesPath)) {
+            Files.createDirectory(filesPath);
+        }
+        Files.copy(absolutePath, filesPath.resolve(path), StandardCopyOption.REPLACE_EXISTING);
 
     }
 }
