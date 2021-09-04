@@ -14,7 +14,7 @@ public class GenericsMethods {
 
         System.out.println("Max for array of integers "+findMax(intArray));
         System.out.println("Max for array of integers "+findMax(doubleArray));
-        System.out.println("Max for array of integers "+findMax(stringArray));
+//        System.out.println("Max for array of integers "+findMax(stringArray));
     }
 
     private static <T> void printArray(T[] intArray) {
@@ -25,7 +25,7 @@ public class GenericsMethods {
         System.out.println();
     }
 
-    private static <T extends Comparable<T>> T findMax(T[] array) {
+    private static <T extends Number & Comparable<T>> T findMax(T[] array) {
         T max = array[0];
         for (T e : array) {
             if (e.compareTo(max)>0) {
