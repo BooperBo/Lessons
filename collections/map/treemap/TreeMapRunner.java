@@ -4,6 +4,7 @@ import java.util.*;
 
 public class TreeMapRunner {
     public static void main(String[] args) {
+
         NavigableMap<AverageStudentGrade, Set<SubjectGrade>> grades = createGrades();
         printGrades(grades, false);
         AverageStudentGrade border = grades.ceilingKey(new AverageStudentGrade("", 80));

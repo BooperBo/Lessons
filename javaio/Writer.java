@@ -19,7 +19,6 @@ public class Writer {
         while (i < 3) {
             try {
 
-
                 formatter.format("%d, %s, %s, %.2f%n", scanner.nextInt(), scanner.next(), scanner.next(), scanner.nextFloat());
                 i++;
             } catch (InputMismatchException e) {
